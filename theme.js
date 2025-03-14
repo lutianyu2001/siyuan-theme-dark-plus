@@ -417,6 +417,16 @@ import(window.theme.addURLParam(`${window.theme.root}/script/module/typewriter.j
 import(window.theme.addURLParam(`${window.theme.root}/script/module/wheel.js`));
 import(window.theme.addURLParam(`${window.theme.root}/script/module/window.js`)); // @deprecated
 
+/* 加载默认块属性注入模块 */
+import(window.theme.addURLParam(`${window.theme.root}/script/module/defaultattrs.js`))
+    .then(module => {
+        // 初始化默认块属性注入
+        module.default.observeEditor();
+    })
+    .catch(err => {
+        console.error('Failed to load defaultattrs module:', err);
+    });
+
 /* 加载独立应用 */
 import(window.theme.addURLParam(`${window.theme.root}/app/comment/index.js`));
 

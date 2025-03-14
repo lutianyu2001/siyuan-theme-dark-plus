@@ -269,6 +269,39 @@ const config = {
             set: {
                 enable: true, // 是否启用设置块属性
             },
+            defaults: {
+                enable: false, // 是否启用默认属性功能
+                delay: 120, // 个人测试最小延迟时间 120ms
+                attributes: {
+                    NodeDocument: {
+                        // 文档块的默认属性
+                        // BUG: 若上次关闭思源笔记时存在多个页签时,
+                        // 在下次打开思源笔记时文档块默认属性只会注入到处于激活状态的页签, 其他页签则不会注入
+                        // 经测试手动刷新亦无法解决问题 (文档块默认属性依然只会注入到手动刷新时处于激活状态的页签)
+                        // 但关闭该页签并重新打开该笔记时则可以正常注入
+                        // 该 BUG 仅存在于文档块, 其他块类型则不会出现该问题
+
+                        // 'auto-num-h': false,  // 示例：禁用子标题自动编号
+                        // 可以添加更多默认属性
+                    },
+                    NodeHeading: {
+                        // 标题块的默认属性
+                    },
+                    NodeParagraph: {
+                        // 段落块的默认属性
+                    },
+                    NodeCodeBlock: {
+                        // 代码块的默认属性
+                    },
+                    NodeList: {
+                        // 列表块的默认属性
+                    },
+                    NodeTable: {
+                        // 表格块的默认属性
+                    },
+                    // ...
+                }
+            },
         },
         reload: {
             // 重新加载
@@ -968,7 +1001,7 @@ const config = {
             }
         },
         readonly: { // @deprecated: https://github.com/siyuan-note/siyuan/issues/2648
-            enable: false, // 只读功能开关 
+            enable: false, // 只读功能开关
             toolbar: { // 菜单栏
                 enable: true,
                 display: true,
